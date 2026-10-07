@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#04060a">
+<meta name="description" content="อินเตอร์สเตลลาร์ (2014) — เว็บนำเสนอภาพยนตร์ของคริสโตเฟอร์ โนแลน พร้อมโมเดล 3 มิติของยานเอ็นดูแรนซ์ หลุมดำการ์กันชัว และฟิสิกส์ของการยืดเวลา">
+<title>อินเตอร์สเตลลาร์ (2014) · ยานเอ็นดูแรนซ์</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='7' fill='%23000'/><ellipse cx='16' cy='16' rx='15' ry='4' fill='none' stroke='%23ffb26b' stroke-width='2'/></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+<noscript><style>
+  /* ไม่มี JavaScript ก็ยังต้องอ่านเนื้อหาได้ครบ */
+  [data-anim],[data-lines],.reveal{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+</style></noscript>
+</head>
+<body>
+
+<!-- ── พื้นหลัง: จานพอกพูนมวลของหลุมดำ (Accretion Disc 3 — Originkit) ── -->
+<div class="accretion" id="accretion-host" aria-hidden="true">
+  <canvas id="accretion"></canvas>
+</div>
+<canvas class="fx" id="fx" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ── แถบเมนู ── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <span class="nav__mark"></span>
+    <span class="nav__word">อินเตอร์<b>สเตลลาร์</b></span>
+  </a>
+  <nav class="nav__links">
+    <a href="#mission">เรื่องย่อ</a>
+    <a href="#endurance">ยานเอ็นดูแรนซ์</a>
+    <a href="#physics">ฟิสิกส์ของเวลา</a>
+    <a href="#music">ดนตรี</a>
+    <a href="#tesseract">เทสเซอแรกต์</a>
+    <a href="#film">ข้อมูลภาพยนตร์</a>
+  </nav>
+  <div class="nav__bar"><i id="navBar"></i></div>
+</header>
+
+<main>
+
+<!-- ── เปิดเรื่อง ── -->
+<section class="hero" id="top">
+  <div class="hero__orbit" aria-hidden="true">
+    <span class="hero__ring hero__ring--1" data-par="0.06"></span>
+    <span class="hero__ring hero__ring--2" data-par="0.11"></span>
+    <span class="hero__ring hero__ring--3" data-par="0.18"></span>
+  </div>
+  <div class="hero__inner">
+    <p class="hero__eyebrow" data-anim="up">ภาพยนตร์ของ คริสโตเฟอร์ โนแลน · ค.ศ. 2014 · 169 นาที · 70 มม. ไอแม็กซ์</p>
+    <h1 class="hero__title" data-split>INTERSTELLAR</h1>
+    <p class="hero__thai" data-anim="up" data-d="1">อินเตอร์สเตลลาร์</p>
+    <p class="hero__posterline" data-anim="up" data-d="2">“จุดจบของโลก จะไม่ใช่จุดจบของเรา”<span>THE END OF EARTH WILL NOT BE THE END OF US.</span></p>
+    <p class="hero__tag" id="heroQuote" data-quote>“มนุษย์เกิดมาบนโลก แต่มันไม่เคยเป็นที่ที่เราควรจะตาย”</p>
+    <div class="hero__cta" data-anim="up" data-d="3">
+      <a class="btn btn--primary" href="#endurance">ขึ้นยานเอ็นดูแรนซ์</a>
+      <a class="btn btn--ghost" href="#physics">ตกลงสู่การ์กันชัว</a>
+    </div>
+    <div class="hero__meta" data-anim="up" data-d="4">
+      <div class="tick">
+        <div class="tick__face">
+          <svg viewBox="0 0 100 100" class="tick__svg">
+            <circle cx="50" cy="50" r="46" class="tick__dial"/>
+            <circle cx="50" cy="50" r="3.2" class="tick__pin"/>
+            <line id="tickSec" x1="50" y1="50" x2="50" y2="12" class="tick__sec"/>
+          </svg>
+        </div>
+        <div class="tick__txt">
+          <b id="clock">--:--:--</b>
+          <span>เวลาท้องถิ่น · นาฬิกายังเดินอยู่</span>
+        </div>
+      </div>
+      <div class="hero__fact">
+        <b>1 ชั่วโมง</b><span>บนดาวมิลเลอร์</span><b class="is-amber">= 7 ปี</b><span>บนโลก</span>
+      </div>
+    </div>
+  </div>
+  <a class="hero__scroll" href="#mission"><span></span>เลื่อนลง</a>
+</section>
+
+<!-- ── เรื่องย่อ ── -->
+<section class="sec" id="mission">
+  <div class="wrap">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">01 — ภารกิจ</p>
+      <h2 class="sec__title" data-lines>โลกกำลังจะตาย<br><span class="dim">หาบ้านใหม่ให้พวกเรา</span></h2>
+    </header>
+    <div class="grid2">
+      <div class="prose" data-anim="up">
+        <p>พืชผลล้มตายทีละสายพันธุ์ โรคไบต์กัดกินทุกสิ่ง วิศวกรคนสุดท้ายถูกฝึกให้กลับไปเป็นเกษตรกร พายุฝุ่นกลบมิดทุกอย่างที่เหลือของโลก และนาซากำลังทำงานลับ ๆ</p>
+        <p>เมื่ออดีตนักบินอย่าง <b>คูเปอร์</b> บังเอิญเจอฐานยิงที่ถูกซ่อนไว้ เขาต้องเลือกระหว่างอยู่กับลูก ๆ หรือบินผ่านรูหนอนใกล้วงโคจรเสาร์ เพื่อตามหาดาวที่มนุษย์อยู่ได้ฝั่งตรงข้ามของกาแล็กซี ภารกิจนี้ชื่อ <b>ลาซารัส</b> นักวิทยาศาสตร์สิบสองคนไปก่อน ทุกวันนี้ยังมีสัญญาณจากหนึ่งในนั้น</p>
+        <p>สิ่งที่เขาพบคือหลุมดำมวลมหาศาลชื่อ <b>การ์กันชัว</b> ดาวที่ต้องเลือกอีกสามดวง หุ่นยนต์ที่มีปุ่มอารมณ์ขัน และกฎฟิสิกส์ข้อหนึ่งที่จะทำให้เขาต้องจ่ายคืนด้วยทุกปีของชีวิตลูกสาว</p>
+        <ul class="bullets">
+          <li><b>แผน เอ</b> — แก้สมการแรงโน้มถ่วง ยกมนุษยชาติทั้งมวลขึ้นสู่สถานีอวกาศขนาดมหึมา</li>
+          <li><b>แผน บี</b> — บรรทุกเอ็มบริโอแช่แข็ง 5,000 ฟอง ไปเริ่มต้นใหม่บนดาวดวงใหม่</li>
+          <li><b>เดอะ บัลค์</b> — มนุษย์จากมิติที่ห้า ผู้สร้างรูหนอน และสร้างเทสเซอแรกต์</li>
+        </ul>
+      </div>
+      <aside class="panels">
+        <div class="panel" data-anim="right">
+          <h3>รายชื่อยานและทีม</h3>
+          <dl class="dl">
+            <div><dt>เอ็นดูแรนซ์</dt><dd>ยานวงแหวน · 12 โมดูล</dd></div>
+            <div><dt>เรนเจอร์</dt><dd>ยานสำรวจในบรรยากาศ</dd></div>
+            <div><dt>แลนเดอร์</dt><dd>ยานลงจอดขนาดหนัก</dd></div>
+            <div><dt>หุ่นยนต์</dt><dd>TARS · CASE · KIPP</dd></div>
+            <div><dt>รูหนอน</dt><dd>ใกล้วงโคจรเสาร์</dd></div>
+            <div><dt>เป้าหมาย</dt><dd>ระบบดาวการ์กันชัว</dd></div>
+          </dl>
+        </div>
+        <div class="panel panel--glow" data-anim="right" data-d="1">
+          <h3>เวลาคือศัตรู</h3>
+          <p class="small">ทุกนาทีที่อยู่ใกล้การ์กันชัว ต้องจ่ายคืนบนโลก กฎของหนังง่ายและโหด: <b class="is-amber">1 ชั่วโมง = 7 ปี</b> ลองใช้เครื่องคำนวณในส่วนฟิสิกส์ของเวลาได้เลย</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── ยานเอ็นดูแรนซ์ (3 มิติ) ── -->
+<section class="sec sec--dark" id="endurance">
+  <div class="wrap">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">02 — ยาน</p>
+      <h2 class="sec__title" data-lines>เอ็นดูแรนซ์<span class="dim"> · กว้าง 65 เมตร</span></h2>
+      <p class="lede">โมดูลภารกิจสิบสองโมดูลต่อกันด้วยอุโมงค์เป็นวงแหวน หมุนรอบแกนกลางเพื่อสร้างแรงโน้มถ่วงเทียม และแยกออกได้ทีละโมดูลเพื่อลงตั้งอาณานิคมบนดาวดวงใหม่ ลากเพื่อหมุน · เลื่อนล้อเพื่อซูม · คลิกจุดเพื่อดูรายละเอียด (โมเดลหมุนตามการเลื่อนหน้าด้วย)</p>
+    </header>
+
+    <div class="viewer" id="viewer">
+      <div class="viewer__stage" id="stage">
+        <canvas id="shipCanvas"></canvas>
+        <div class="viewer__hotspots" id="hotspots"></div>
+        <div class="viewer__hud">
+          <span class="dot"></span> เรนเดอร์สด · WEBGL
+        </div>
+        <div class="viewer__hint" id="viewerHint">ลากเพื่อหมุน · เลื่อนล้อเพื่อซูม</div>
+        <div class="viewer__fallback" id="viewerFallback" hidden>
+          <b>เบราว์เซอร์นี้ไม่รองรับ WebGL</b>
+          <p>จึงแสดงโมเดลแบบเรียลไทม์ไม่ได้ แต่ข้อมูลด้านล่างยังเล่าเรื่องยานได้ครบ</p>
+        </div>
+      </div>
+
+      <div class="viewer__side">
+        <div class="ctrl" data-anim="right">
+          <button class="tgl is-on" data-tgl="spin">↻ หมุนวงแหวน</button>
+          <button class="tgl is-on" data-tgl="orbit">⟳ หมุนอัตโนมัติ</button>
+          <button class="tgl" data-tgl="wire">◇ โครงลวด</button>
+          <button class="tgl" data-tgl="explode">⬡ แยกโมดูล</button>
+          <button class="tgl is-on" data-tgl="stars">✦ สนามดาว</button>
+          <button class="tgl is-on" data-tgl="labels">◎ จุดข้อมูล</button>
+          <button class="tgl" id="btnResetView">⟲ รีเซ็ตมุมมอง</button>
+        </div>
+        <div class="readout" id="readout" data-anim="right" data-d="1">
+          <h3>ยานเอ็นดูแรนซ์</h3>
+          <p>คลิกจุดบนโมเดลเพื่อดูระบบย่อยของยาน</p>
+          <dl class="dl dl--mono">
+            <div><dt>เส้นผ่านศูนย์กลางวงแหวน</dt><dd>65 ม.</dd></div>
+            <div><dt>จำนวนโมดูล</dt><dd>12 (ถอดได้)</dd></div>
+            <div><dt>แรงโน้มถ่วง</dt><dd>จากการหมุนวงแหวน</dd></div>
+            <div><dt>แรงบันดาลใจ</dt><dd>หน้าปัดนาฬิกา 12 ชั่วโมง</dd></div>
+            <div><dt>ยานที่บรรทุก</dt><dd>เรนเจอร์ · แลนเดอร์</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ฟิสิกส์ของเวลา ── -->
+<section class="sec" id="physics">
+  <div class="wrap">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">03 — ฟิสิกส์</p>
+      <h2 class="sec__title" data-lines>การ์กันชัวบิดเวลา</h2>
+      <p class="lede">คิป ธอร์น ที่ปรึกษาวิทยาศาสตร์ของหนัง ยืนยันว่าหลุมดำในเรื่องต้องเป็นไปตามสมการสนามของไอน์สไตน์ ทีมวิชวลเอฟเฟกต์ของ Double Negative จึงสร้างโปรแกรมเรนเดอร์ตามสมการเหล่านั้น และภาพที่ได้ก็ถูกตีพิมพ์เป็นงานวิจัยจริงในเวลาต่อมา</p>
+    </header>
+
+    <div class="timecalc" data-anim="zoom">
+      <div class="timecalc__left">
+        <h3>เครื่องคำนวณการยืดเวลา</h3>
+        <p class="small">ดาวมิลเลอร์อยู่ใกล้ขอบฟ้าเหตุการณ์ของการ์กันชัว แรงโน้มถ่วงมหาศาลดึงเวลาให้ช้าลง ลากแถบด้านล่างเพื่อดูว่าภารกิจบนผิวดาวหนึ่งครั้งต้องแลกด้วยอะไรบนโลก</p>
+        <label class="slider">
+          <span>เวลาที่อยู่บนผิวดาวมิลเลอร์</span>
+          <input type="range" id="hours" min="0" max="24" step="0.25" value="3">
+          <output id="hoursOut">3 ชม. 00 นาที</output>
+        </label>
+        <div class="timecalc__quick">
+          <button data-hours="0.25">15 นาที</button>
+          <button data-hours="1">1 ชั่วโมง</button>
+          <button data-hours="3">3 ชั่วโมง</button>
+          <button data-hours="12">12 ชั่วโมง</button>
+        </div>
+      </div>
+      <div class="timecalc__right">
+        <div class="big" id="yearsOut">21<span>ปี</span></div>
+        <p class="small" id="yearsNote">บนโลก เวลาผ่านไป 21 ปี ลูกสาวของคุณโตขึ้นโดยไม่มีคุณ</p>
+        <div class="cascade" id="cascade" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <article class="card" data-anim="up">
+        <div class="card__art card__art--hole" aria-hidden="true"><i></i></div>
+        <h3>การ์กันชัว</h3>
+        <p>หลุมดำมวลมหาศาลที่หมุนเร็วเกือบถึงขีดจำกัดของสัมพัทธภาพ จานพอกพูนมวลของมันคือแสงเดียวในระยะหลายพันล้านกิโลเมตร และแรงโน้มถ่วงของมันก็บิดแสงนั้นเป็นวงแหวนที่คุณเห็น</p>
+      </article>
+      <article class="card" data-anim="up" data-d="1">
+        <div class="card__art card__art--wave" aria-hidden="true"><i></i><i></i><i></i></div>
+        <h3>ดาวมิลเลอร์</h3>
+        <p>ดาวมหาสมุทรห่างจากขอบฟ้าเหตุการณ์ประมาณหนึ่งชั่วโมงแสง น้ำตื้นแค่เข่า ไม่มีแผ่นดิน และคลื่นสูงเป็นกิโลเมตรที่มาถึงเหมือนภูเขาเคลื่อนที่ทุกไม่กี่ชั่วโมง</p>
+      </article>
+      <article class="card" data-anim="up" data-d="2">
+        <div class="card__art card__art--ice" aria-hidden="true"><i></i></div>
+        <h3>ดาวมานน์</h3>
+        <p>เมฆน้ำแข็ง เกลือแอมโมเนียแช่แข็ง และสัญญาณที่โกหก ทุกดาวในบัญชีรายชื่อถูกให้คะแนนโดยมนุษย์เพียงคนเดียวที่ไม่มีอะไรจะเสียแล้ว</p>
+      </article>
+      <article class="card" data-anim="up" data-d="3">
+        <div class="card__art card__art--cube" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <h3>เทสเซอแรกต์</h3>
+        <p>ในขอบฟ้าเหตุการณ์ เวลากลายเป็นสถานที่ที่เดินผ่านได้ อวกาศสี่มิติที่หนึ่งในนั้นถูกปิด และโครงตาข่ายอนันต์ของห้องนอนลูกสาวคนหนึ่ง</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── ดนตรี ── -->
+<section class="sec sec--dark" id="music">
+  <div class="wrap">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">04 — ดนตรี</p>
+      <h2 class="sec__title" data-lines>ออร์แกนในโบสถ์<br><span class="dim">วันอังคารบ่ายวันหนึ่ง</span></h2>
+    </header>
+    <div class="grid2 grid2--rev">
+      <div class="organ" data-anim="left">
+        <div class="organ__pipes" id="pipes" aria-hidden="true"></div>
+        <div class="organ__label">โบสถ์เทมเปิล · ลอนดอน · ออร์แกน 4 คีย์บอร์ด</div>
+      </div>
+      <div class="prose" data-anim="up">
+        <p>ฮันส์ ซิมเมอร์ เขียนท่วงทำนองหลักเสร็จก่อนที่คริสโตเฟอร์ โนแลน จะบอกเขาด้วยซ้ำว่าหนังเรื่องนี้เกี่ยวกับอะไร โนแลนยื่นกระดาษแผ่นเดียวที่เขียนถึงพ่อคนหนึ่งซึ่งกำลังจากลูกไป และขอสิ่งที่เหมือน <i>คำสารภาพส่วนตัว</i> — แต่ซิมเมอร์เขียนมันไว้แล้วหลายปีก่อน เพื่อตัวเขาเอง</p>
+        <p>เขาบันทึกเสียงที่ออร์แกนท่อของโบสถ์เทมเปิลในลอนดอน ด้วยการด้นสดมากกว่าการเขียนโน้ต และดึงสต็อปทั้งหมดออกมาให้สุด ผลลัพธ์คือดนตรีที่ฟังไม่เหมือนวงออร์เคสตรา แต่เหมือนลมหายใจ — เสียงติ๊กและต็อกใน <b>“First Step”</b> การไต่ขึ้นของ <b>“Mountains”</b> ความเศร้าที่ค่อย ๆ คืบของ <b>“Stay”</b> และการปลดปล่อยใน <b>“Day One”</b></p>
+        <blockquote class="quote">
+          “อย่าไปอย่างอ่อนโยนสู่ราตรีอันแสนดี<br>ความชราควรลุกโชนและคลั่งในยามใกล้รุ่ง”
+          <cite>ดีแลน โธมัส — ถูกอ่านสองครั้งในหนัง</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── เทสเซอแรกต์ ── -->
+<section class="sec" id="tesseract">
+  <div class="wrap wrap--narrow">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">05 — เหนือขอบฟ้าเหตุการณ์</p>
+      <h2 class="sec__title" data-lines>เทสเซอแรกต์</h2>
+      <p class="lede">ไฮเปอร์คิวบ์ที่มนุษย์จากมิติที่ห้าคลี่ออกมา เพื่อให้มนุษย์คนหนึ่งเอื้อมข้ามเวลาไปแตะชั้นหนังสือของลูกสาว กล่องนี้หมุนด้วย CSS ล้วน ๆ ไม่ต้องใช้ WebGL</p>
+    </header>
+    <div class="tess" data-anim="zoom">
+      <div class="tess__scene" id="tessScene">
+        <div class="tess__cube" id="tessCube"></div>
+      </div>
+      <div class="tess__legend" data-anim="right">
+        <div><b>X</b> ผนังห้องนอน</div>
+        <div><b>Y</b> ชั้นหนังสือทุกชั้น</div>
+        <div><b>Z</b> แรงโน้มถ่วงที่หิ้วเป็นเส้นเชือก</div>
+        <div><b>W</b> ทุกช่วงเวลาพร้อมกัน</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ข้อมูลภาพยนตร์ + โปสเตอร์ ── -->
+<section class="sec sec--dark" id="film">
+  <div class="wrap">
+    <header class="sec__head" data-anim="up">
+      <p class="kicker">06 — ภาพยนตร์</p>
+      <h2 class="sec__title" data-lines>เครดิตและตัวเลข</h2>
+    </header>
+
+    <div class="facts">
+      <div class="fact" data-anim="up"><b data-count="169">0</b><span>นาที</span></div>
+      <div class="fact" data-anim="up" data-d="1"><b data-count="2014" data-plain>0</b><span>ปีที่ฉาย · พ.ศ. 2557</span></div>
+      <div class="fact" data-anim="up" data-d="2"><b data-count="5">0</b><span>การเสนอชื่อออสการ์</span></div>
+      <div class="fact" data-anim="up" data-d="3"><b data-count="1">0</b><span>รางวัลออสการ์</span></div>
+      <div class="fact" data-anim="up" data-d="4"><b data-count="12">0</b><span>โมดูลของยาน</span></div>
+      <div class="fact" data-anim="up" data-d="5"><b data-count="5000">0</b><span>เอ็มบริโอแช่แข็ง</span></div>
+    </div>
+
+    <div class="poster-block">
+      <figure class="poster" data-anim="left">
+        <!-- width/height กันหน้าเว็บกระตุกตอนรูปโหลดเสร็จ -->
+        <img src="assets/img/poster.png" width="1000" height="1481"
+             alt="โปสเตอร์ภาพยนตร์อินเตอร์สเตลลาร์ (2014) — แมทธิว แม็คคอนาเฮย์ ในชุดนักบินอวกาศบนดาวน้ำแข็ง"
+             loading="lazy" decoding="async" data-par="0.05">
+        <figcaption>โปสเตอร์ฉบับโรงภาพยนตร์ · พาราเมาต์ พิกเจอส์ / วอร์เนอร์ บราเธอร์ส · 2014</figcaption>
+      </figure>
+      <div class="poster-block__text">
+        <div class="panel" data-anim="right">
+          <h3>กำหนดฉายในโรง</h3>
+          <p class="poster-block__line">ในระบบ 70 มม. ไอแม็กซ์ · 70 มม. และ 35 มม.</p>
+          <p class="poster-block__date">5 พฤศจิกายน 2014 <span>รอบพิเศษ</span></p>
+          <p class="poster-block__date">7 พฤศจิกายน 2014 <span>ทุกโรงภาพยนตร์</span></p>
+          <p class="small">ผู้ชมทั่วไป (PG-13) · ความยาว 169 นาที · เข้าฉายครบรอบทศวรรษในปี 2024 ด้วยระบบไอแม็กซ์อีกครั้ง</p>
+        </div>
+        <div class="panel" data-anim="right" data-d="1">
+          <h3>ทีมสร้าง</h3>
+          <dl class="dl">
+            <div><dt>กำกับ</dt><dd>คริสโตเฟอร์ โนแลน</dd></div>
+            <div><dt>บทภาพยนตร์</dt><dd>โจนาธาน โนแลน และ คริสโตเฟอร์ โนแลน</dd></div>
+            <div><dt>อำนวยการสร้าง</dt><dd>เอ็มมา โทมัส · โนแลน · ลินดา ออบส์ท</dd></div>
+            <div><dt>ดนตรี</dt><dd>ฮันส์ ซิมเมอร์</dd></div>
+            <div><dt>กำกับภาพ</dt><dd>โฮยเต ฟาน โฮยเทมา</dd></div>
+            <div><dt>ลำดับภาพ</dt><dd>ลี สมิธ</dd></div>
+            <div><dt>ออกแบบงานสร้าง</dt><dd>นาธาน ครอว์ลีย์</dd></div>
+            <div><dt>เทคนิคพิเศษ</dt><dd>Double Negative · พอล แฟรงคลิน</dd></div>
+            <div><dt>ที่ปรึกษาวิทยาศาสตร์</dt><dd>คิป ธอร์น (คาลเทค)</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel--cast" data-anim="up">
+      <h3>นักแสดง</h3>
+      <div class="cast">
+        <span><b>แมทธิว แม็คคอนาเฮย์</b>คูเปอร์</span>
+        <span><b>แอนน์ แฮทธาเวย์</b>ดร. อมีเลีย แบรนด์</span>
+        <span><b>ไมเคิล เคน</b>ศาสตราจารย์แบรนด์</span>
+        <span><b>เจสซิกา แชสเทน</b>เมิร์ฟ</span>
+        <span><b>แม็คเคนซี ฟอย</b>เมิร์ฟวัยเด็ก</span>
+        <span><b>แมตต์ เดมอน</b>ดร. มานน์</span>
+        <span><b>เดวิด กยาซี</b>โรมีลลี</span>
+        <span><b>เวส เบนท์ลีย์</b>ดอยล์</span>
+        <span><b>เคซีย์ แอฟเฟล็ก</b>ทอม</span>
+        <span><b>เอลเลน เบิร์สทีน</b>เมิร์ฟวัยชรา</span>
+        <span><b>บิล เออร์วิน</b>เสียงของ TARS</span>
+        <span><b>โทเฟอร์ เกรซ</b>เก็ตตี้</span>
+      </div>
+    </div>
+
+    <div class="tars" id="tars" data-anim="up">
+      <div class="tars__head">
+        <span class="tars__id">TARS · หุ่นยนต์สี่เหลี่ยม</span>
+        <span class="tars__dial">อารมณ์ขัน <b id="humour">75</b>% &nbsp;·&nbsp; ความซื่อสัตย์ <b id="honesty">90</b>%</span>
+      </div>
+      <pre class="tars__screen" id="tarsScreen">&gt; _</pre>
+      <div class="tars__btns">
+        <button data-humour="75" data-honesty="90" data-line="ทุกคนพร้อมจะบอกลาระบบสุริยะของเราแล้วหรือยัง">ค่าตั้งต้น</button>
+        <button data-humour="95" data-honesty="90" data-line="คุณเพิ่งทำลายทางออกฉุกเฉินของผมเรียบร้อย คืนค่าอารมณ์ขันแล้ว">อารมณ์ขัน 95%</button>
+        <button data-humour="60" data-honesty="100" data-line="ความซื่อสัตย์หนึ่งร้อยเปอร์เซ็นต์ เราหมดอาหาร หมดเชื้อเพลิง และผมไม่เห็นแผนการใด ๆ เลย">ความซื่อสัตย์ 100%</button>
+        <button data-humour="79" data-honesty="90" data-line="มันเป็นไปไม่ได้ — ไม่ มันจำเป็น">โหมดเทียบยาน</button>
+        <button data-humour="95" data-honesty="90" data-line="มีโอกาสรอดห้าสิบห้าสิบ ผมชอบอัตรานั้น">สถานการณ์ฉุกเฉิน</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__big" data-anim="up">“อย่าไปอย่างอ่อนโยนสู่ราตรีอันแสนดี”</p>
+    <p class="small" data-anim="up" data-d="1">เว็บนี้ทำขึ้นเพื่อการนำเสนอและเรียนรู้ ไม่มีความเกี่ยวข้องกับพาราเมาต์ พิกเจอส์, วอร์เนอร์ บราเธอร์ส, ซินโคปี หรือเลเจนดารี พิกเจอส์ ชื่อภาพยนตร์ ตัวละคร และโปสเตอร์เป็นลิขสิทธิ์ของเจ้าของแต่ละราย</p>
+    <p class="small dim" data-anim="up" data-d="2">เว็บสแตติกไฟล์เดียว · เปิด <code>interstellar/index.html</code> ได้เลย หรือรันเซิร์ฟเวอร์ในเครื่องด้วย <code>node serve.js</code></p>
+  </div>
+</footer>
+
+<script src="assets/js/accretion.js"></script>
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/js/background.js"></script>
+<script src="assets/js/endurance.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

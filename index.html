@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="por Doujin — ค้นหาและอ่านดับจินออนไลน์ ดึงข้อมูลจริงจากเว็บต้นทาง">
+<title>por Doujin</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>💗</text></svg>">
+</head>
+<body>
+
+<!-- ============ AGE GATE ============ -->
+<div class="gate" id="gate">
+  <div class="gate__box">
+    <div class="gate__logo">💗</div>
+    <h1>por Doujin</h1>
+    <p class="gate__sub">ค้นหาและอ่านดับจิน — ดึงข้อมูล<b>จริง</b>จากเว็บต้นทาง อัปเดตอัตโนมัติ</p>
+    <div class="gate__warn">
+      เนื้อหา 18+ เท่านั้น · ห้ามเผยแพร่ · คุณต้องมีอายุถึงขั้นตามกฎหมายของประเทศคุณ<br>
+      เว็บนี้เป็นตัวค้นหา/อ่านที่ดึง metadata และอ้างรูปจากเว็บต้นทางจริง ไม่ได้เก็บสำเนาคอนเทนต์ไว้เอง
+    </div>
+    <div class="gate__row">
+      <button class="btn btn--primary" id="gateOk">ฉันอายุ 18 ปีขึ้นไป · เข้าสู่เว็บ</button>
+      <button class="btn btn--ghost" id="gateNo">ออกไป</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOP BAR (ลอย) ============ -->
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#/">
+      <span class="brand__mark">💗</span>
+      <span class="brand__text">por<b>Doujin</b></span>
+    </a>
+
+    <div class="search">
+      <span class="search__icon">🔍</span>
+      <input id="q" type="search" placeholder="ค้นชื่อเรื่องหรือศิลปิน…" autocomplete="off" spellcheck="false">
+      <kbd class="search__kbd">/</kbd>
+    </div>
+
+    <div class="topbar__actions">
+      <button class="icon-btn" id="btnScan" title="ไล่หน้าใหม่ของเว็บเพื่อเติมคลังอัตโนมัติ">⟳ สแกนเพิ่ม</button>
+      <button class="icon-btn" id="btnFavs" title="เฉพาะรายการที่ฉันถูกใจ ♥">♥ <span id="favCount">0</span></button>
+      <button class="icon-btn" id="btnAnd" title="สลับโหมด AND / OR ของการกรองแท็ก">AND</button>
+      <button class="icon-btn" id="btnView" title="สลับมุมมอง grid / list">▦</button>
+      <button class="icon-btn" id="btnRandom" title="สุ่มเรื่องสุ่ม">🎲</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__badge">ทุกแนว</div>
+  <h1 class="hero__title">แนะนำโดจินสุดโหดดโหด <span>by พี่กัปตัน</span></h1>
+  <p class="hero__desc">
+    ไล่หน้าล่าสุดจากเว็บต้นทางจริง <b>ไม่ต้องค้นคำใด ๆ</b> แล้วไล่ต่อแบบเบื้องหลังจนกว่าจะครบ
+    ตัดออกอย่างเดียวคือ <b>แนว furry</b> · ไม่มีข้อมูลตัวอย่างปะปน
+  </p>
+</section>
+
+<!-- ============ LAYOUT ============ -->
+<div class="layout">
+
+  <!-- ---------- SIDEBAR ---------- -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-block">
+      <h2 class="side-title">📅 ช่วงเวลา</h2>
+      <div class="side-row" data-date="all"><span class="radio-dot"></span>ทั้งหมด<span class="side-row__n"></span></div>
+      <div class="side-row" data-date="7"><span class="radio-dot"></span>7 วัน<span class="side-row__n"></span></div>
+      <div class="side-row" data-date="30"><span class="radio-dot"></span>30 วัน<span class="side-row__n"></span></div>
+      <div class="side-row" data-date="180"><span class="radio-dot"></span>6 เดือน<span class="side-row__n"></span></div>
+    </div>
+
+    <div class="side-block">
+      <h2 class="side-title">🌐 ภาษา</h2>
+      <div class="side-row" data-lang="all"><span class="radio-dot"></span>ทุกภาษา</div>
+      <div id="langList"></div>
+    </div>
+
+    <div class="side-block">
+      <h2 class="side-title">🗂 หมวด</h2>
+      <div id="groupList"></div>
+    </div>
+
+    <div class="side-block">
+      <h2 class="side-title">🏷 แท็กในคลัง</h2>
+      <div class="tagline" id="tagCloud"></div>
+    </div>
+  </aside>
+
+  <!-- ---------- MAIN ---------- -->
+  <main class="main">
+    <div class="toolbar">
+      <button class="btn btn--filter" id="btnFilter" aria-expanded="false">⚙ ตัวกรอง</button>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="toolbar__right">
+        <label class="src-pick">แหล่งข้อมูล
+          <select id="srcSel" title="เลือกเว็บต้นทางที่จะค้นหา">
+            <option value="miku,dth,netoru">ทุกเว็บ</option>
+            <option value="miku">miku-doujin.com</option>
+            <option value="dth">doujin-th.com</option>
+            <option value="netoru">netoruhentai.com</option>
+            <option value="neko">neko-hentai.net ⚠</option>
+          </select>
+        </label>
+        <select id="sort" title="เรียงลำดับ"></select>
+        <div class="seg">
+          <button data-view="grid" class="is-active" title="มุมมองตาราง">▦</button>
+          <button data-view="list" title="มุมมองรายการ">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips-active" id="activeChips"></div>
+    <div class="status" id="status" hidden></div>
+
+    <div class="grid" id="grid"></div>
+
+    <div id="empty" class="empty" hidden>
+      <div class="empty__big">🔍</div>
+      <div class="empty__msg">ไม่พบรายการที่ตรงกับเงื่อนไข</div>
+      <button class="btn btn--primary" style="margin-top:16px" id="btnReset">ล้างตัวกรองทั้งหมด</button>
+    </div>
+
+    <div class="sentinel" id="sentinel" aria-live="polite"></div>
+  </main>
+</div>
+
+<!-- ============ DETAIL MODAL ============ -->
+<div class="modal" id="modal" hidden>
+  <div class="modal__box">
+    <button class="modal__close" id="modalClose" title="ปิด (Esc)">×</button>
+    <div id="detail"></div>
+  </div>
+</div>
+
+<!-- ============ READER ============ -->
+<div class="reader" id="reader" hidden>
+  <div class="reader__bar">
+    <button class="btn" id="rPrev">◀ ก่อนหน้า</button>
+    <button class="btn" id="rNext">ถัดไป ▶</button>
+    <div class="reader__title" id="rTitle"></div>
+    <div class="reader__count" id="rCount"></div>
+    <button class="btn" id="rClose">ปิด ✕</button>
+  </div>
+  <div class="reader__stage" id="rStage"></div>
+  <div class="reader__thumbs" id="rThumbs"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/sources.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
